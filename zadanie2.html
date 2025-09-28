@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie – wielokrotności liczby 15</title>
+</head>
+<body>
+<script>
+    // Wyświetlenie daty ostatniej modyfikacji strony
+    document.write('<h2 style="color:red;">Ostatnia modyfikacja strony</h2>');
+    document.write('<p style="color:green; font-weight:bold;">' + document.lastModified + '</p>');
+
+    // Tworzenie tabeli z wielokrotnościami liczby 15
+    document.write('<table border="1" cellspacing="0" cellpadding="5">');
+    document.write('<tr>');
+    document.write('<th>n</th>');
+    document.write('<th>n * 15</th>');
+    document.write('</tr>');
+
+    // Pętla generująca kolejne wiersze
+    for (let n = 1; n <= 20; n++) {
+        document.write('<tr>');
+        document.write('<td>' + n + '</td>');
+        document.write('<td>' + (n * 15) + '</td>');
+        document.write('</tr>');
+    }
+
+    document.write('</table>');
+</script>
+</body>
+</html>
