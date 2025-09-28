@@ -1,180 +1,64 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="utf-8" />
-<title>Zadanie 5 — Praca z oknami (Wieniawa)</title>
-<style>
-  body { font-family: Arial, Helvetica, sans-serif; padding:20px; }
-  h1 { color: #a00; }
-  .btn { margin:4px; padding:6px 10px; border:1px solid #666; border-radius:4px; background:#eee; cursor:pointer; }
-  #output { border:2px solid #222; padding:16px; margin-top:12px; min-height:120px; width:80%; }
-  label { display:block; margin-top:8px; }
-</style>
+    <meta charset="UTF-8">
+    <title>Zadanie 5 - Stanisław Łybacki</title>
+    <script language="JavaScript">
+        function WinOpen_Lybacki_grafika1() {
+            let okno = window.open("", "grafika1","width=350,height=350,top=50,left=50");
+            okno.document.write(`
+                <html><body style="text-align:center;">
+                    <img src="https://tse2.mm.bing.net/th/id/OIP.KvnZQy9Gneq7dTsKaDT12wHaE8?rs=1&pid=ImgDetMain&o=7&rm=3" width="300"><br>
+                    <p style="color:red;">Robert Lewandowski</p>
+                </body></html>
+            `);
+        }
+
+        function WinOpen_Lybacki_grafika2() {
+            let okno = window.open("", "grafika2","width=350,height=350,top=100,left=450");
+            okno.document.write(`
+                <html><body style="text-align:center;">
+                    <img src="https://www.goal.pl/wp-content/uploads/2025/09/Cristiano-Ronaldo-6.jpg" width="300"><br>
+                    <p style="color:green;">Cristiano Ronaldo</p>
+                </body></html>
+            `);
+        }
+
+        function WinOpen_Lybacki_grafika3() {
+            let okno = window.open("", "grafika3","width=350,height=350,top=300,left=50");
+            okno.document.write(`
+                <html><body style="text-align:center;">
+                    <img src="https://i.iplsc.com/arkadiusz-milik/000GCLSWABNE0T47-C116-F4.jpg" width="300"><br>
+                    <p style="color:blue;">Arkadiusz Milik</p>
+                </body></html>
+            `);
+        }
+
+        function WinOpen_Lybacki_grafika4() {
+            let okno = window.open("", "grafika4","width=350,height=350,top=300,left=450");
+            okno.document.write(`
+                <html><body style="text-align:center;">
+                    <img src="https://cdn.theathletic.com/app/uploads/2023/01/26081952/GettyImages-1421935412-scaled.jpg" width="300"><br>
+                    <p style="color:orange;">Mateusz Cash</p>
+                </body></html>
+            `);
+        }
+
+        function okno_zamknij_Lybacki() {
+            window.close();
+        }
+    </script>
 </head>
-<body>
-  <h1>Szkielet zaliczeniowy JavaScript — wykonanie: Kamil Wieniawa</h1>
-
-  <!-- Przyciski zadania głównego (symulacja zadania1..5) -->
-  <div>
-    <button class="btn" onclick="alert('Przycisk zadanie1')">zadanie1</button>
-    <button class="btn" onclick="alert('Przycisk zadanie2')">zadanie2</button>
-    <button class="btn" onclick="alert('Przycisk zadanie3')">zadanie3</button>
-    <button class="btn" onclick="alert('Przycisk zadanie4')">zadanie4</button>
-    <button class="btn" onclick="WinOpen_Wieniawa_1()">zadanie5-Wieniawa</button>
-  </div>
-
-<script>
-/*
-  Implementacja:
-  - WinOpen_Wieniawa_1() otwiera główne okienko zadania5
-  - W oknie zadanie5 użytkownik wpisuje numer z dziennika (lub użyje przykładu),
-    skrypt oblicza który układ (mod 4), wyświetla informację i 4 przyciski
-    grafik1..grafika4, które otwierają okna z treścią i pozycjonują je zależnie od układu.
-  - okno_zamknij_Wieniawa_1() zamyka to okno.
-*/
-
-function WinOpen_Wieniawa_1() {
-  // Wymiary i cechy okna zadanie5
-  const w = 700, h = 380;
-  const left = Math.max(0, (screen.width - w) / 2);
-  const top = Math.max(0, (screen.height - h) / 2);
-  const opts = `width=${w},height=${h},left=${left},top=${top},resizable=yes,scrollbars=yes`;
-  const win = window.open('', 'zadanie5_Wieniawa', opts);
-
-  // Treść okna (można edytować)
-  win.document.write(`
-    <!doctype html><html lang="pl"><head>
-    <meta charset="utf-8"><title>Zadanie5 - Wieniawa</title>
-    <style>
-      body{font-family:Arial,Helvetica,sans-serif;padding:12px}
-      h2{color:#b00}
-      .btn{margin:6px;padding:6px 10px;border:1px solid #666;border-radius:4px;background:#eee;cursor:pointer}
-      #grafiki{margin-top:12px}
-    </style>
-    </head><body>
-      <h2>wykonał: Kamil Wieniawa</h2>
-      <p>Mój numer w dzienniku (wpisz lub użyj przykładu):</p>
-      <label>Numer w dzienniku: <input id="num" type="number" value="26" style="width:80px" /></label>
-      <button class="btn" id="oblicz">Oblicz układ i pokaż przyciski</button>
-      <div id="info" style="margin-top:10px;font-weight:bold"></div>
-      <div id="grafiki"></div>
-      <div style="margin-top:14px"><button class="btn" id="zamknij">zamknij okno</button></div>
-      <script>
-        // Funkcja wysyła polecenia do głównego okna (opcjonalne)
-        const grafikWindows = {}; // przechowuje referencje otwartych okien
-        function createGrafikaContent(id){
-          // Zwraca prosty HTML dla okna grafiki
-          const texts = {
-            1: "KOT POTRZEBUJE POMOCY",
-            2: "LECIMY NA POMOC!",
-            3: "PORA GRAC!",
-            4: "JUŻ PO SPRAWIE"
-          };
-          return '<!doctype html><html lang=\"pl\"><head><meta charset=\"utf-8\"><title>Grafika '+id+'</title>' +
-            '<style>body{font-family:Arial;padding:6px;margin:0} .card{width:140px;height:240px;border:6px solid #cfcfcf;background:#fff;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:bold}</style>' +
-            '</head><body><div class=\"card\">'+texts[id]+'</div></body></html>';
-        }
-
-        function openGrafika(which, layout, index){
-          // which: 1..4, layout: 'Układ1'..'Układ4', index: 0..3 (miejsce)
-          const sizes = {w:150,h:300};
-          let left=100, top=100;
-          const screenW = screen.availWidth, screenH = screen.availHeight;
-          // Definicje pozycji dla 4 layoutów (przykładowe)
-          if(layout === 'Układ1'){ // rząd na środku
-            const totalW = 4*(sizes.w+20);
-            left = Math.max(10, (screenW - totalW)/2 + index*(sizes.w+20));
-            top = Math.max(40, (screenH - sizes.h)/2);
-          } else if(layout === 'Układ2'){ // narożniki
-            const corners = [
-              {left:20, top:60}, // lewy górny
-              {left:screenW - sizes.w - 20, top:60}, // prawy górny
-              {left:20, top:screenH - sizes.h - 80}, // lewy dolny
-              {left:screenW - sizes.w - 20, top:screenH - sizes.h - 80} // prawy dolny
-            ];
-            ({left,top} = corners[index]);
-          } else if(layout === 'Układ3'){ // diagonalnie
-            left = 60 + index*180;
-            top = 80 + index*60;
-          } else if(layout === 'Układ4'){ // rząd u góry
-            left = 60 + index*(sizes.w+20);
-            top = 60;
-          } else {
-            left = 80 + index*160;
-            top = 100;
-          }
-          const opts = `width=${sizes.w},height=${sizes.h},left=${Math.round(left)},top=${Math.round(top)},resizable=yes`;
-          const name = 'grafika_'+which;
-          // jeśli okno już istnieje i nie jest zamknięte, to wyrównaj/otwórz nowe
-          if(grafikWindows[name] && !grafikWindows[name].closed){
-            try{
-              grafikWindows[name].moveTo(Math.round(left), Math.round(top));
-              grafikWindows[name].resizeTo(sizes.w, sizes.h);
-              grafikWindows[name].focus();
-            }catch(e){
-              // niektóre przeglądarki blokują moveTo/resizeTo
-            }
-          } else {
-            const g = window.open('', name, opts);
-            g.document.write(createGrafikaContent(which));
-            grafikWindows[name] = g;
-          }
-        }
-
-        document.getElementById('oblicz').addEventListener('click', function(){
-          const v = parseInt(document.getElementById('num').value,10);
-          if(isNaN(v)){ alert('Wpisz numer w dzienniku'); return; }
-          const mod = v % 4;
-          // Mapowanie: 1->Układ1, 2->Układ2, 0->Układ4, 3->Układ3 (zgodnie z przykładem)
-          let ukl;
-          if(mod === 1) ukl = 'Układ1';
-          else if(mod === 2) ukl = 'Układ2';
-          else if(mod === 3) ukl = 'Układ3';
-          else /*mod===0*/ ukl = 'Układ4';
-
-          document.getElementById('info').textContent = 'Masz układ: ' + ukl + ' ((' + v + ') mod 4 = ' + mod + ')';
-
-          // pokaż przyciski grafik
-          const grafDiv = document.getElementById('grafiki');
-          grafDiv.innerHTML = '';
-          for(let i=1;i<=4;i++){
-            const btn = document.createElement('button');
-            btn.className='btn';
-            btn.textContent = 'grafika' + i;
-            // aby każde okno było rozmieszczane zgodnie z indexem (0..3)
-            btn.addEventListener('click', (function(which,iIndex,uklad){
-              return function(){ openGrafika(which, uklad, iIndex); };
-            })(i, i-1, ukl));
-            grafDiv.appendChild(btn);
-          }
-        });
-
-        document.getElementById('zamknij').addEventListener('click', function(){
-          // nazwa funkcji specyficzna z nazwiskiem
-          window.close(); // zamyka to okno
-        });
-
-      </script>
-    </body></html>
-  `);
-
-  // Zwróć fokus do nowo otwartego okna
-  win.focus();
-}
-
-// Funkcje z nazwiskiem (przykładowe - możliwe do wywołania z innego skryptu)
-function okno_zamknij_Wieniawa_1(){
-  // jeśli okno miało konkretną nazwę, próbujemy je zamknąć
-  const w = window.open('', 'zadanie5_Wieniawa');
-  if(w && !w.closed) w.close();
-}
-</script>
-
-<p style="margin-top:20px; font-size:0.9em; color:#333">
-  Instrukcja: kliknij <strong>zadanie5-Wieniawa</strong> — otworzy się nowe okno z polem na numer z dziennika
-  (domyślnie 26). Po kliknięciu „Oblicz układ…” zobaczysz, który układ został wybrany i pojawią się
-  przyciski grafik1..4. Każdy przycisk otwiera okno z przykładową treścią i ustawia je wg wybranego układu.
-</p>
-
+<body style="text-align:center; font-family:Arial;">
+    <h2 style="color:blue;">Stanisław Łybacki, klasa 3F, nr 16</h2>
+    <h3 style="color:red;">Obliczamy układ 1</h3>
+    <p>Piłkarze:</p>
+    <button onclick="WinOpen_Lybacki_grafika1()">Grafika 1</button>
+    <button onclick="WinOpen_Lybacki_grafika2()">Grafika 2</button>
+    <button onclick="WinOpen_Lybacki_grafika3()">Grafika 3</button>
+    <button onclick="WinOpen_Lybacki_grafika4()">Grafika 4</button>
+    <br><br>
+    <button onclick="okno_zamknij_Lybacki()">Zamknij okno</button>
 </body>
 </html>
