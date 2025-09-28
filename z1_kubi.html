@@ -1,36 +1,22 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl-PL">
 <head>
-<meta charset="UTF-8">
-<title>Zadanie 1 – cztery litery, nazwisko, uczeń</title>
+  <meta charset="utf-8">
+  <title>z1 - Wizytówka - Łybacki</title>
 </head>
 <body>
-
 <script>
-// --- DANE DO UZUPEŁNIENIA ---
-// Wpisz tutaj swoje dane:
-let imie = "Jan";
-let nazwisko = "Kowalski";
-
-// 1. Wypisanie w przeglądarce powitania
-document.write("<font color='#FF0000'>Witaj w moim programie!</font><br>");
-
-// 2. Wypisanie imienia
-document.write("<font color='#0000FF'>Imię ucznia: " + imie + "</font><br>");
-
-// 3. Wypisanie nazwiska
-document.write("<font color='#008000'>Nazwisko ucznia: " + nazwisko + "</font><br>");
-
-// 4. Wypisanie 4 liter (pierwsze 4 litery imienia)
-let czteryLitery = imie.substring(0,4);
-document.write("<font color='#FF00FF'>Pierwsze 4 litery imienia: " + czteryLitery + "</font><br>");
-
-// 5. Użycie pętli do powtarzania
-document.write("<br><b>Powtórzenie liter z indeksem:</b><br>");
-for (let i = 0; i < czteryLitery.length; i++) {
-    document.write("<font color='#00CED1'>" + (i+1) + ". " + czteryLitery[i] + "</font><br>");
-}
+// Wizytówka dla Stanisław Łybacki, nr w dzienniku 16
+// Wygenerowana zgodnie z zadaniem 1: obramowanie, imię i nazwisko
+var borderChar = "+";
+var width = 25;
+var line = "";
+for (var i=0;i<width;i++){ line += borderChar; }
+document.write(line.fontcolor("#00FFFF") + "<br>");
+document.write((borderChar + "&nbsp;&nbsp;&nbsp;Imię: ".fontcolor("green") + "Stanisław&nbsp;&nbsp;&nbsp;" + borderChar).fontcolor("#00FFFF") + "<br>");
+document.write((borderChar + "&nbsp;&nbsp;&nbsp;Nazwisko: ".fontcolor("green") + "Łybacki&nbsp;&nbsp;&nbsp;" + borderChar).fontcolor("#00FFFF") + "<br>");
+document.write(line.fontcolor("#00FFFF") + "<br>");
+document.title = "Łybacki - Wizytówka";
 </script>
-
 </body>
 </html>
