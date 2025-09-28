@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Strona zaliczeniowa – Kowalski Jan</title>
+<script type="text/javascript">
+    var WinObj;
+
+    function otworzOkno() {
+        WinObj = window.open(
+            "zadanie1_kow.html",
+            "zadanie",
+            "toolbar=no,directories=no,menubar=no,height=380,width=600,top=200,left=200"
+        );
+    }
+
+    function zamknijOkno() {
+        if (WinObj && !WinObj.closed) {
+            WinObj.close();
+        } else {
+            alert("Okno już jest zamknięte lub nie zostało otwarte.");
+        }
+    }
+</script>
+</head>
+<body>
+<h2>Strona zaliczeniowa z JavaScript – Kowalski Jan, klasa 2TI</h2>
+
+<input type="button" value="Zadanie 1 – Kowalski Jan" onclick="otworzOkno()">
+<input type="button" value="Zadanie 2 – Kowalski Jan" onclick="alert('Tu będzie kolejne zadanie')">
+<input type="button" value="Zamknij okno" onclick="zamknijOkno()">
+
+</body>
+</html>
